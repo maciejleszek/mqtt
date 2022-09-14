@@ -1,0 +1,46 @@
+
+import paho.mqtt.client as mqtt
+from timeit import default_timer as timer
+from datetime import timedelta
+import time
+start = 0
+end = 0
+
+mqttText = "Loremipsumdolorsitamet,consecteturadipiscingelit.Donecpellentesquedictummauris,vitaeeuismodtortorvolutpatfaucibus.Nullamvarius,turpisinegestasmaximus,ligulaurnafeugiatmetus,idaccumsannequemassaidenim.Sedpretium,maurissitametsuscipitlaoreet,erosenimtincidunterat,nonpretiumerosdoloridnunc.Aliquamnoncommododiam,vitaebibendumerat.Donecdictumviverratristique.Utlacusmassa,portautvulputateid,mollissitametrisus.Quisqueeuturpisvelmassaaliquetcongue.Maurissedscelerisqueaugue.Invelrhoncuslacus.Curabiturviverradiameusapienornareultricies.Vivamustellusleo,laciniautpulvinareu,blanditamassa.Inauctorornareornare.Etiamconvallisultriciesultricies.Vestibulumegetfelisidnibhiaculisluctus.Maurissitametipsumatnisieuismodmollis.Vivamussednislnecmetuscondimentumlobortisnonidleo.Sedvestibulumantelibero,atvulputatenisieuismodut.Pellentesquedapibusturpisnecegestassodales.Crasfinibuslobortisposuere.Crasacportamassa.Mauriscongueimperdieturna,atdignissimnislconguequis.Crasultriciesaliquamposuere.Morbisodalestristiquelorem,vellobortislectuspharetraa.Sedultricessemaugue,vitaepharetranisibibendumin.Curabiturfinibus,elitlobortisconguerutrum,duilectusconsequatmi,eumalesuadamaurisdiamveldiam.Incursuseleifendsapiennecdapibus.Fusceerosnisi,rutruminaliquetfaucibus,condimentumsitametnibh.Aeneanimperdietturpiseuipsumcondimentumfeugiat.Sedsedultriciesnisl.Nullaegetnibhquam.Sednonantehendrerit,scelerisquelectusnon,scelerisquedolor.Quisquevelarcuinliberosagittistincidunt.Donecquisestimperdiettellusegestaseleifendvitaeacvelit.Utatloremipsum.Nuncvulputatevulputateneque,fringillagravidafelisposueresitamet.Praesentliberonulla,egestassednisiet,sodalescongueleo.Nullampulvinarauctormassa.Nunciaculis,nullavelcondimentumpellentesque,duinislhendreritodio,actempusleournaeuligula.Sedrutrum,orcisedlobortisrhoncus,liberoenimornarenulla,apulvinarleometusnecjusto.Morbiegestasfeugiatluctus.Maurisinrisusaclacusfinibusfringillavitaeveltortor.Fusceleolorem,venenatisacfacilisiset,tempornecsapien.Quisquedictumeroseleifendveliteleifend,etelementumestiaculis.Nullaidfermentumlacus.ielitlectus,tristiquesitametfaucibusid,vehiculanonjusto.Inauctorarcuante,acscelerisqueodiotinciduntnon.Maecenasconsecteturmagnaarcu,iniaculisliberoeleifendsed.Fuscefinibuspellentesquemollis.Crasultriciesenimegettortorlaoreet,necullamcorperpurusfaucibus.Vestibulumtempuseudiamsedblandit.Etiamiaculislaciniatincidunt.Vestibulumnequemi,tempusvelelitnec,rutrumfeugiatorci.Nuncmaximuserosvelit,nonmollismaurisdictumeu.Quisqueenimdui,rutrumquiscondimentumeu,feugiategetdui.Pellentesqueluctusultriciesenim,etfermentumenim.Aliquamscelerisquesemquam,etcongueestluctuspellentesque.Maecenassitametaliquetligula,eteuismodquam.Vestibulumsedblanditenim,afinibusmauris.Nuncsempertortoregetliberoultriciesconsectetur.Suspendissecommodoporttitorodioegetdapibus.Praesentfaucibusmaurisveldiamullamcorper,aviverralectusvulputate.Suspendissepotenti.Proinarisusbibendum,mollisanteeu,viverramassa.Quisqueporttitoraturnaadictum.Phaselluslaoreetsemegetportarutrum.Namliberoorci,suscipitetlobortisin,faucibusvitaemauris.Donecullamcorperpharetraelit,nonsagittislacusblanditeget.Donecerosmagna,scelerisquesedodioac,euismodsollicitudinligula.Inmollislacuselit,ininterdumnuncsodaleseget.Pellentesquegravida,odioeupulvinaraliquam,nuncduihendreritquam,nonporttitororciodioutante.Invehiculaestsedrisuslacinia,egetcommodoloremscelerisque.Donecporttitorintortordapibusaliquam.Phasellusbibendummaurisvelaugueporta,viverrasollicitudinarcuplacerat.Namfinibusmolestietincidunt.Nullafaucibusnequeidsapienconvalliscongue.Maurisquismolliseros.Craseleifendrisusmetus,euauctorvelitlaoreetnec.Quisquemattisarcuaceuismodporta.Praesentimperdietodioaugue,noniaculispuruselementumac.Quisqueetesteleifend,vehiculaleovitae,faucibusodio.Donecaccumsanconsequatmollis.Maecenasauctorurnalobortismaurisdignissim,nonconsequatnisialiquet.Fuscemaurislorem,portaeununcsed,aliquamfinibusex.Sednecturpisplacerat,venenatisesta,tempussem.Utvelorciutduisempercongueaettellus.Integerviverracommodonisineccongue.Maurisdapibusligulasedauguedictumsodales.Praesentmaximuselitsedauguelaoreet,nonsempernisidapibus.Aeneanvelitmassa,interdumacrutrumac,pretiumaeros.Insempervelitutsapienvehiculatempus.Aeneanefficituridnibhvelaliquet.Duisdapibus,nibhacpharetraultricies,od"
+
+def on_connect(client, userdata, flags, rc):
+    global start
+    start = timer()
+    print(f"Connected to the broker with result code {rc}")
+    if rc == 0:
+        client.publish(topic = "Test-1/STATUS/EVENT", payload = "ONLINE", qos = 2, retain = False)   
+
+def on_publish(client, userdata, mid):
+    global end
+    end = timer()
+    print(timedelta(seconds=end-start))
+    print('lol')
+      
+def on_message(client, userdata, msg):
+    print(f"topic: {msg.topic}, payload: {msg.payload.decode('utf-8')}")
+
+
+mqttHost = '192.168.99.90'
+mqttPort = 1883
+
+client = mqtt.Client(client_id="pcClient")
+
+client.on_connect = on_connect
+
+client.on_publish = on_publish
+client.on_message = on_message
+
+# client.will_set(topic = "ORZEL_PC/STATUS/CONNECTION", payload = "OFFLINE", retain = True)
+client.connect(host = mqttHost, port = mqttPort, keepalive = 10)
+
+client.loop_forever()
+
+
+
+
+
